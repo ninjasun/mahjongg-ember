@@ -36,10 +36,6 @@ a {
   font-size: 90%;
 }
 
-.visible {
-  display: block;
-}
-
 #board {
   width: 640px;
   height: 480px;
@@ -51,7 +47,15 @@ a {
   background-position: 0 0;
   background-image: url('../i/board.png');
 
+  &.loading {
+    background-color: #d2c8b5;
+    background-image: url('../i/loading.gif');
+    background-position: center center;
+  }
+
   &.game, &.game-over {
+
+    // show tiles only in game and gameover states
     .tile {
       &.visible {
         display: block;
@@ -59,6 +63,7 @@ a {
     }
   }
 
+  // change background
   &.game-won {
     background-image: url('../i/win.png');
   }

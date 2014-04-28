@@ -27,10 +27,10 @@
 </script>
 
 <script data-template-name="index" type="text/x-handlebars">
-    <section id="board" {{bind-attr class="gameState"}} >
-        {{#each tile in controller}}
+    <section id="board" {{bind-attr class="state"}} >
+        {{#each tile in content.tiles}}
         <a href="#"
-        {{bind-attr class=":tile tile.cssClass tile.visible tile.selected tile.clickable" style="tile.css"}}
+        {{bind-attr class=":tile tile.cssClass tile.visible tile.selected tile.clickable" style="tile.position"}}
         {{action "clickTile" tile}}
         ></a>
         {{/each}}

@@ -31,9 +31,6 @@ a:hover {
   border-top: 1px dotted #888;
   font-size: 90%;
 }
-.visible {
-  display: block;
-}
 #board {
   width: 640px;
   height: 480px;
@@ -44,6 +41,11 @@ a:hover {
   background-repeat: no-repeat;
   background-position: 0 0;
   background-image: url('../i/board.png');
+}
+#board.loading {
+  background-color: #d2c8b5;
+  background-image: url('../i/loading.gif');
+  background-position: center center;
 }
 #board.game .tile.visible,
 #board.game-over .tile.visible {
