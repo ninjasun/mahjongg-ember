@@ -27,7 +27,7 @@
 </script>
 
 <script data-template-name="index" type="text/x-handlebars">
-    <section id="board">
+    <section id="board" {{bind-attr class="gameState"}} >
         {{#each tile in controller}}
         <a href="#"
         {{bind-attr class=":tile tile.cssClass tile.visible tile.selected tile.clickable" style="tile.css"}}

@@ -40,7 +40,11 @@ App.IndexController = Ember.ArrayController.extend({
         clickTile: function (tile) {
             tile.set('selected', !tile.get('selected'));
         }
-    }
+    },
+
+    gameState: (function(){
+        return 'game';
+    }).property('gameState')
 });
 
 App.IndexView = Ember.View.extend({

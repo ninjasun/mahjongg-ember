@@ -40,15 +40,21 @@ a:hover {
   margin: 0 auto;
   border: 1px solid #888;
   position: relative;
-  background: url('../i/board.png') no-repeat 0 0;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-image: url('../i/board.png');
+}
+#board.game .tile.visible,
+#board.game-over .tile.visible {
+  display: block;
+}
+#board.game-won {
+  background-image: url('../i/win.png');
 }
 #board .tile {
   display: none;
   position: absolute;
-}
-#board .tile.visible {
-  display: block;
 }
 #board .tile.clickable {
   cursor: pointer;

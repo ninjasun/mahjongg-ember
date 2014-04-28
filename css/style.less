@@ -46,16 +46,26 @@ a {
   margin: 0 auto;
   border: 1px solid #888;
   position: relative;
-  background: url('../i/board.png') no-repeat 0 0;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-image: url('../i/board.png');
+
+  &.game, &.game-over {
+    .tile {
+      &.visible {
+        display: block;
+      }
+    }
+  }
+
+  &.game-won {
+    background-image: url('../i/win.png');
+  }
 
   .tile {
     display: none;
     position: absolute;
-
-    &.visible {
-      display: block;
-    }
 
     &.clickable {
       cursor: pointer;
