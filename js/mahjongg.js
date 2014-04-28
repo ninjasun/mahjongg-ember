@@ -15,8 +15,8 @@ App.Tile = Ember.Object.extend({
 
     // style for tile positioning
     css: (function () {
-        var pos_x = 36 * this.get('i');
-        var pos_y = 48 * this.get('j');
+        var pos_x = 18 + 36 * this.get('i');
+        var pos_y = 24 + 48 * this.get('j');
         var img_offset = -36 * this.get('tile');
         var z_index = 100;
         return 'left:' + pos_x + 'px;top:' + pos_y + 'px;z-index:' + z_index + ';';
@@ -26,10 +26,10 @@ App.Tile = Ember.Object.extend({
 
 App.IndexRoute = Ember.Route.extend({
     setupController: function (controller) {
-        var tiles = [
-            App.Tile.create({i: 1, j: 1, k: 1, tile: 1}),
-            App.Tile.create({i: 2, j: 2, k: 1, tile: 2})
-        ];
+        var tiles = [];
+        for (i = 1; i <= 42; i++) {
+            tiles.push(App.Tile.create({i: (i - 1) % 10, j: Math.floor((i - 1) / 10), k: 1, tile: i}));
+        }
 
         controller.set('content', Em.A(tiles));
     }
