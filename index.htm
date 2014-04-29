@@ -11,25 +11,42 @@
     <script type='text/javascript' src='js/mahjongg.js'></script>
 </head>
 <body>
-
-<script data-template-name="application" type="text/x-handlebars">
+<div class="wrapper">
     <div class="container">
-        <div class="heading">
+        <header class="clearfix">
             <img src="i/logo.png" alt="Mahjongg"/>
-        </div>
+            <img src="i/ember.png" alt="Ember JS"/>
+        </header>
 
-        {{outlet}}
+        <p>
+            Mahjongg solitaire game made using <a href="http://emberjs.com/">Ember</a> JavaScript framework.
+        </p>
+
+        <div id="mahjongg"></div>
 
         <section id="downloads" class="clearfix">
             <a href="https://github.com/snakeye/mahjongg-ember/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
             <a href="https://github.com/snakeye/mahjongg-ember/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
             <a href="https://github.com/snakeye/mahjongg-ember" id="view-on-github" class="button"><span>View on GitHub</span></a>
         </section>
+    </div>
+    <div class="push"></div>
+</div>
 
-        <div class="footer">
+<footer>
+    <div class="container clearfix">
+        <div class="float-left">
             Mahjongg Ember.js &copy; 2014 <a href="mailto:andrew.ovcharov@gmail.com">Andrey Ovcharov</a>
         </div>
+        <div class="float-right">
+            <a href="http://www.linkedin.com/in/snakeye" title="LinkedIn profile"><i class="ic-linkedin"></i></a>
+            <a href="https://www.xing.com/profile/Andrey_Ovcharov2" title="XING profile"><i class="ic-xing"></i></a>
+        </div>
     </div>
+</footer>
+
+<script data-template-name="application" type="text/x-handlebars">
+    {{outlet}}
 </script>
 
 <script data-template-name="index" type="text/x-handlebars">

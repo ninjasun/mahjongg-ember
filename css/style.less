@@ -1,0 +1,187 @@
+@import "functions";
+
+* {
+  margin: 0;
+}
+
+html, body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  background: #d2c8b5 url(../i/bkg.png);
+  color: #3e3b36;
+  height: 100%;
+}
+
+@footer-height: 50px;
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -(@footer-height); /* the bottom margin is the negative value of the footer's height */
+}
+
+footer, .push {
+  height: @footer-height; /* .push must be the same height as .footer */
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #125600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.clearfix:after {
+  content: " "; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 970px;
+}
+
+header {
+  padding: 30px 0 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #b0a18c;
+}
+
+footer {
+  border-top: 1px dotted #888;
+  font-size: 90%;
+  line-height: 50px;
+  height: 50px;
+}
+
+i {
+  display: inline-block;
+  vertical-align: text-top;
+  background-image: url("../i/sprite.png");
+  background-repeat: no-repeat;
+
+  &.ic-xing {
+    width: 16px;
+    height: 16px;
+    background-position: 0px 0px;
+  }
+
+  &.ic-linkedin {
+    width: 16px;
+    height: 16px;
+    background-position: -16px 0px;
+  }
+}
+
+#board {
+  width: 640px;
+  height: 480px;
+  margin: 0 auto;
+  border: 1px solid #888;
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-image: url('../i/bkg_game.jpg');
+
+  &.loading {
+    background-color: #d2c8b5;
+    background-image: url('../i/loading.gif');
+    background-position: center center;
+  }
+
+  &.game, &.game-over {
+
+    // show tiles only in game and gameover states
+    .tile, .tile-shadow {
+      &.visible {
+        display: block;
+      }
+    }
+  }
+
+  // change background
+  &.game-won {
+    background-image: url('../i/win.png');
+  }
+
+  .tile-shadow {
+    display: none;
+    position: absolute;
+    width: 36px;
+    height: 48px;
+    box-shadow: 0 0 10px #000;
+
+    &.selected {
+      //box-shadow: 0 0 10px #df0000;
+    }
+  }
+
+  .tile {
+    display: none;
+    position: absolute;
+
+    &.clickable {
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: inset 0 0 3px 1px #ffb800;
+      }
+    }
+
+    &.selected {
+      box-shadow: inset 0 0 10px #df0000;
+
+      &:hover {
+        box-shadow: inset 0 0 10px #df0000;
+      }
+    }
+  }
+}
+
+@import "tiles";
+
+#downloads {
+  text-align: center;
+  margin: 40px 0;
+
+  .button {
+    display: inline-block;
+    padding: 5px 20px;
+    margin: 0 20px;
+    border: 1px solid #888;
+    text-decoration: none;
+    background: #fbefd7;
+    .border-radius(5px);
+
+    &:hover {
+      .vgradient(#fbefd7, #dbcebb);
+    }
+  }
+}

@@ -1,4 +1,6 @@
-var Mahjongg = Ember.Application.create();
+var Mahjongg = Ember.Application.create({
+    rootElement: '#mahjongg'
+});
 
 Mahjongg.Tile = Ember.Object.extend({
     i: -1,
