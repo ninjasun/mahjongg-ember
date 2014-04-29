@@ -147,7 +147,7 @@ Mahjongg.Board = Ember.Object.extend({
 
 Mahjongg.IndexRoute = Ember.Route.extend({
     setupController: function (controller) {
-        Ember.run(function () {
+        Ember.run.later(function () {
             // create board
             var board = Mahjongg.Board.create();
             board.generate();
@@ -155,7 +155,7 @@ Mahjongg.IndexRoute = Ember.Route.extend({
             board.randomizeLayout();
             controller.set('content', board);
             controller.set('state', 'game');
-        });
+        }, 750);
     }
 });
 
