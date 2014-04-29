@@ -4874,8 +4874,8 @@ ComputedPropertyPrototype.property = function() {
   ```
   person: function() {
     var personId = this.get('personId');
-    return App.Person.create({ id: personId });
-  }.property().meta({ type: App.Person })
+    return Mahjongg.Person.create({ id: personId });
+  }.property().meta({ type: Mahjongg.Person })
   ```
 
   The hash that you pass to the `meta()` function will be saved on the
@@ -7020,7 +7020,7 @@ Ember.run.scheduleOnce = function(queue, target, method) {
   where all the DOM element operations happen). Example:
 
   ```javascript
-  App.MyCollectionView = Ember.CollectionView.extend({
+  Mahjongg.MyCollectionView = Ember.CollectionView.extend({
     didInsertElement: function() {
       Ember.run.scheduleOnce('afterRender', this, 'processChildElements');
     },
@@ -8087,7 +8087,7 @@ Ember.mixin = function(obj) {
   added to other classes. For instance,
 
   ```javascript
-  App.Editable = Ember.Mixin.create({
+  Mahjongg.Editable = Ember.Mixin.create({
     edit: function() {
       console.log('starting to edit');
       this.set('isEditing', true);
@@ -8097,11 +8097,11 @@ Ember.mixin = function(obj) {
 
   // Mix mixins into classes by passing them as the first arguments to
   // .extend.
-  App.CommentView = Ember.View.extend(App.Editable, {
+  Mahjongg.CommentView = Ember.View.extend(Mahjongg.Editable, {
     template: Ember.Handlebars.compile('{{#if view.isEditing}}...{{else}}...{{/if}}')
   });
 
-  commentView = App.CommentView.create();
+  commentView = Mahjongg.CommentView.create();
   commentView.edit(); // outputs 'starting to edit'
   ```
 
@@ -8115,17 +8115,17 @@ Ember.mixin = function(obj) {
 
   ```javascript
   //filters array will be shared amongst any object implementing mixin
-  App.Filterable = Ember.Mixin.create({
+  Mahjongg.Filterable = Ember.Mixin.create({
     filters: Ember.A()
   });
 
   //filters will be a separate  array for every object implementing the mixin
-  App.Filterable = Ember.Mixin.create({
+  Mahjongg.Filterable = Ember.Mixin.create({
     filters: Ember.computed(function(){return Ember.A();})
   });
 
   //filters will be created as a separate array during the object's initialization
-  App.Filterable = Ember.Mixin.create({
+  Mahjongg.Filterable = Ember.Mixin.create({
     init: function() {
       this._super();
       this.set("filters", Ember.A());
@@ -8317,14 +8317,14 @@ Alias.prototype = new Ember.Descriptor();
   Makes a method available via an additional name.
 
   ```javascript
-  App.Person = Ember.Object.extend({
+  Mahjongg.Person = Ember.Object.extend({
     name: function() {
       return 'Tomhuda Katzdale';
     },
     moniker: Ember.aliasMethod('name')
   });
 
-  var goodGuy = App.Person.create()
+  var goodGuy = Mahjongg.Person.create()
   ```
 
   @method aliasMethod
@@ -8434,7 +8434,7 @@ Ember.immediateObserver = function() {
   A `beforeObserver` is an alternative form of `.observesBefore()`.
 
   ```javascript
-  App.PersonView = Ember.View.extend({
+  Mahjongg.PersonView = Ember.View.extend({
 
     friends: [{ name: 'Tom' }, { name: 'Stefan' }, { name: 'Kris' }],
 
@@ -12995,13 +12995,13 @@ CoreObject.PrototypeMixin = Mixin.create({
     Example:
 
     ```javascript
-    App.Person = Ember.Object.extend({
+    Mahjongg.Person = Ember.Object.extend({
       init: function() {
         alert('Name is ' + this.get('name'));
       }
     });
 
-    var steve = App.Person.create({
+    var steve = Mahjongg.Person.create({
       name: "Steve"
     });
 
@@ -13033,17 +13033,17 @@ CoreObject.PrototypeMixin = Mixin.create({
     property and a normal one:
 
     ```javascript
-    App.BarView = Ember.View.extend({
+    Mahjongg.BarView = Ember.View.extend({
       someNonConcatenatedProperty: ['bar'],
       classNames: ['bar']
     });
 
-    App.FooBarView = App.BarView.extend({
+    Mahjongg.FooBarView = Mahjongg.BarView.extend({
       someNonConcatenatedProperty: ['foo'],
       classNames: ['foo'],
     });
 
-    var fooBarView = App.FooBarView.create();
+    var fooBarView = Mahjongg.FooBarView.create();
     fooBarView.get('someNonConcatenatedProperty'); // ['foo']
     fooBarView.get('classNames'); // ['ember-view', 'bar', 'foo']
     ```
@@ -13052,7 +13052,7 @@ CoreObject.PrototypeMixin = Mixin.create({
     above example:
 
     ```javascript
-    var view = App.FooBarView.create({
+    var view = Mahjongg.FooBarView.create({
       someNonConcatenatedProperty: ['baz'],
       classNames: ['baz']
     })
@@ -13062,7 +13062,7 @@ CoreObject.PrototypeMixin = Mixin.create({
     Adding a single property that is not an array will just add it in the array:
 
     ```javascript
-    var view = App.FooBarView.create({
+    var view = Mahjongg.FooBarView.create({
       classNames: 'baz'
     })
     view.get('classNames'); // ['ember-view', 'bar', 'foo', 'baz']
@@ -13162,31 +13162,31 @@ CoreObject.PrototypeMixin = Mixin.create({
     objects.
 
     ```javascript
-    App.Person = Em.Object.extend()
-    person = App.Person.create()
-    person.toString() //=> "<App.Person:ember1024>"
+    Mahjongg.Person = Em.Object.extend()
+    person = Mahjongg.Person.create()
+    person.toString() //=> "<Mahjongg.Person:ember1024>"
     ```
 
     If the object's class is not defined on an Ember namespace, it will
     indicate it is a subclass of the registered superclass:
 
    ```javascript
-    Student = App.Person.extend()
+    Student = Mahjongg.Person.extend()
     student = Student.create()
-    student.toString() //=> "<(subclass of App.Person):ember1025>"
+    student.toString() //=> "<(subclass of Mahjongg.Person):ember1025>"
     ```
 
     If the method `toStringExtension` is defined, its return value will be
     included in the output.
 
     ```javascript
-    App.Teacher = App.Person.extend({
+    Mahjongg.Teacher = Mahjongg.Person.extend({
       toStringExtension: function() {
         return this.get('fullName');
       }
     });
-    teacher = App.Teacher.create()
-    teacher.toString(); //=> "<App.Teacher:ember1026:Tom Dale>"
+    teacher = Mahjongg.Teacher.create()
+    teacher.toString(); //=> "<Mahjongg.Teacher:ember1026:Tom Dale>"
     ```
 
     @method toString
@@ -13227,19 +13227,19 @@ var ClassMixin = Mixin.create({
     Creates a new subclass.
 
     ```javascript
-    App.Person = Ember.Object.extend({
+    Mahjongg.Person = Ember.Object.extend({
       say: function(thing) {
         alert(thing);
        }
     });
     ```
 
-    This defines a new subclass of Ember.Object: `App.Person`. It contains one method: `say()`.
+    This defines a new subclass of Ember.Object: `Mahjongg.Person`. It contains one method: `say()`.
 
     You can also create a subclass from any existing class by calling its `extend()`  method. For example, you might want to create a subclass of Ember's built-in `Ember.View` class:
 
     ```javascript
-    App.PersonView = Ember.View.extend({
+    Mahjongg.PersonView = Ember.View.extend({
       tagName: 'li',
       classNameBindings: ['isAdministrator']
     });
@@ -13248,14 +13248,14 @@ var ClassMixin = Mixin.create({
     When defining a subclass, you can override methods but still access the implementation of your parent class by calling the special `_super()` method:
 
     ```javascript
-    App.Person = Ember.Object.extend({
+    Mahjongg.Person = Ember.Object.extend({
       say: function(thing) {
         var name = this.get('name');
         alert(name + ' says: ' + thing);
       }
     });
 
-    App.Soldier = App.Person.extend({
+    Mahjongg.Soldier = Mahjongg.Person.extend({
       say: function(thing) {
         this._super(thing + ", sir!");
       },
@@ -13264,38 +13264,38 @@ var ClassMixin = Mixin.create({
       }
     });
 
-    var yehuda = App.Soldier.create({
+    var yehuda = Mahjongg.Soldier.create({
       name: "Yehuda Katz"
     });
 
     yehuda.say("Yes");  // alerts "Yehuda Katz says: Yes, sir!"
     ```
 
-    The `create()` on line #17 creates an *instance* of the `App.Soldier` class. The `extend()` on line #8 creates a *subclass* of `App.Person`. Any instance of the `App.Person` class will *not* have the `march()` method.
+    The `create()` on line #17 creates an *instance* of the `Mahjongg.Soldier` class. The `extend()` on line #8 creates a *subclass* of `Mahjongg.Person`. Any instance of the `Mahjongg.Person` class will *not* have the `march()` method.
 
     You can also pass `Ember.Mixin` classes to add additional properties to the subclass.
 
     ```javascript
-    App.Person = Ember.Object.extend({
+    Mahjongg.Person = Ember.Object.extend({
       say: function(thing) {
         alert(this.get('name') + ' says: ' + thing);
       }
     });
 
-    App.SingingMixin = Ember.Mixin.create({
+    Mahjongg.SingingMixin = Ember.Mixin.create({
       sing: function(thing){
         alert(this.get('name') + ' sings: la la la ' + thing);
       }
     });
 
-    App.BroadwayStar = App.Person.extend(App.SingingMixin, {
+    Mahjongg.BroadwayStar = Mahjongg.Person.extend(Mahjongg.SingingMixin, {
       dance: function() {
         alert(this.get('name') + ' dances: tap tap tap tap ');
       }
     });
     ```
 
-    The `App.BroadwayStar` class contains three methods: `say()`, `sing()`, and `dance()`.
+    The `Mahjongg.BroadwayStar` class contains three methods: `say()`, `sing()`, and `dance()`.
 
     @method extend
     @static
@@ -13344,13 +13344,13 @@ var ClassMixin = Mixin.create({
     containing values to initialize the newly instantiated object with.
 
     ```javascript
-    App.Person = Ember.Object.extend({
+    Mahjongg.Person = Ember.Object.extend({
       helloWorld: function() {
         alert("Hi, my name is " + this.get('name'));
       }
     });
 
-    var tom = App.Person.create({
+    var tom = Mahjongg.Person.create({
       name: 'Tom Dale'
     });
 
@@ -13364,7 +13364,7 @@ var ClassMixin = Mixin.create({
     instance during initialization:
 
     ```javascript
-    var noName = App.Person.create();
+    var noName = Mahjongg.Person.create();
     noName.helloWorld(); // alerts undefined
     ```
 
@@ -13437,34 +13437,34 @@ var ClassMixin = Mixin.create({
     and not on any instance of that class.
 
     ```javascript
-    App.Person = Ember.Object.extend({
+    Mahjongg.Person = Ember.Object.extend({
       name : "",
       sayHello : function(){
         alert("Hello. My name is " + this.get('name'));
       }
     });
 
-    App.Person.reopenClass({
+    Mahjongg.Person.reopenClass({
       species : "Homo sapiens",
       createPerson: function(newPersonsName){
-        return App.Person.create({
+        return Mahjongg.Person.create({
           name:newPersonsName
         });
       }
     });
 
-    var tom = App.Person.create({
+    var tom = Mahjongg.Person.create({
       name : "Tom Dale"
     });
-    var yehuda = App.Person.createPerson("Yehuda Katz");
+    var yehuda = Mahjongg.Person.createPerson("Yehuda Katz");
 
     tom.sayHello(); // "Hello. My name is Tom Dale"
     yehuda.sayHello(); // "Hello. My name is Yehuda Katz"
-    alert(App.Person.species); // "Homo sapiens"
+    alert(Mahjongg.Person.species); // "Homo sapiens"
     ```
 
     Note that `species` and `createPerson` are *not* valid on the `tom` and `yehuda`
-    variables. They are only valid on `App.Person`.
+    variables. They are only valid on `Mahjongg.Person`.
 
     To add functions and properties to instances of
     a constructor by extending the constructor's prototype
@@ -13502,8 +13502,8 @@ var ClassMixin = Mixin.create({
     ```javascript
     person: function() {
       var personId = this.get('personId');
-      return App.Person.create({ id: personId });
-    }.property().meta({ type: App.Person })
+      return Mahjongg.Person.create({ id: personId });
+    }.property().meta({ type: Mahjongg.Person })
     ```
 
     Once you've done this, you can retrieve the values saved to the computed
@@ -16154,12 +16154,12 @@ ReduceComputedProperty.prototype.property = function () {
   Example
 
   ```javascript
-  App.PeopleController = Ember.ArrayController.extend({
+  Mahjongg.PeopleController = Ember.ArrayController.extend({
     itemController: 'person',
 
     sortedPeople: Ember.computed.sort('@this.@each.reversedName', function(personA, personB) {
       // `reversedName` isn't defined on Person, but we have access to it via
-      // the item controller App.PersonController.  If we'd used
+      // the item controller Mahjongg.PersonController.  If we'd used
       // `content.@each.reversedName` above, we would be getting the objects
       // directly and not have access to `reversedName`.
       //
@@ -16170,7 +16170,7 @@ ReduceComputedProperty.prototype.property = function () {
     })
   });
 
-  App.PersonController = Ember.ObjectController.extend({
+  Mahjongg.PersonController = Ember.ObjectController.extend({
     reversedName: function () {
       return reverse(get(this, 'name'));
     }.property('name')
@@ -16469,12 +16469,12 @@ Ember.computed.sum = function(dependentKey){
   array is empty.
 
   ```javascript
-  App.Person = Ember.Object.extend({
+  Mahjongg.Person = Ember.Object.extend({
     childAges: Ember.computed.mapBy('children', 'age'),
     maxChildAge: Ember.computed.max('childAges')
   });
 
-  var lordByron = App.Person.create({children: []});
+  var lordByron = Mahjongg.Person.create({children: []});
   lordByron.get('maxChildAge'); // -Infinity
   lordByron.get('children').pushObject({
     name: 'Augusta Ada Byron', age: 7
@@ -16517,12 +16517,12 @@ Ember.computed.max = function (dependentKey) {
   array is empty.
 
   ```javascript
-  App.Person = Ember.Object.extend({
+  Mahjongg.Person = Ember.Object.extend({
     childAges: Ember.computed.mapBy('children', 'age'),
     minChildAge: Ember.computed.min('childAges')
   });
 
-  var lordByron = App.Person.create({children: []});
+  var lordByron = Mahjongg.Person.create({children: []});
   lordByron.get('minChildAge'); // Infinity
   lordByron.get('children').pushObject({
     name: 'Augusta Ada Byron', age: 7
@@ -16572,13 +16572,13 @@ Ember.computed.min = function (dependentKey) {
   Example
 
   ```javascript
-  App.Hamster = Ember.Object.extend({
+  Mahjongg.Hamster = Ember.Object.extend({
     excitingChores: Ember.computed.map('chores', function(chore) {
       return chore.toUpperCase() + '!';
     })
   });
 
-  var hamster = App.Hamster.create({
+  var hamster = Mahjongg.Hamster.create({
     chores: ['clean', 'write more unit tests']
   });
   hamster.get('excitingChores'); // ['CLEAN!', 'WRITE MORE UNIT TESTS!']
@@ -16610,11 +16610,11 @@ Ember.computed.map = function(dependentKey, callback) {
   Returns an array mapped to the specified key.
 
   ```javascript
-  App.Person = Ember.Object.extend({
+  Mahjongg.Person = Ember.Object.extend({
     childAges: Ember.computed.mapBy('children', 'age')
   });
 
-  var lordByron = App.Person.create({children: []});
+  var lordByron = Mahjongg.Person.create({children: []});
   lordByron.get('childAges'); // []
   lordByron.get('children').pushObject({name: 'Augusta Ada Byron', age: 7});
   lordByron.get('childAges'); // [7]
@@ -16659,13 +16659,13 @@ Ember.computed.mapProperty = Ember.computed.mapBy;
   ```
 
   ```javascript
-  App.Hamster = Ember.Object.extend({
+  Mahjongg.Hamster = Ember.Object.extend({
     remainingChores: Ember.computed.filter('chores', function(chore) {
       return !chore.done;
     })
   });
 
-  var hamster = App.Hamster.create({chores: [
+  var hamster = Mahjongg.Hamster.create({chores: [
     {name: 'cook', done: true},
     {name: 'clean', done: true},
     {name: 'write more unit tests', done: false}
@@ -16714,11 +16714,11 @@ Ember.computed.filter = function(dependentKey, callback) {
   Filters the array by the property and value
 
   ```javascript
-  App.Hamster = Ember.Object.extend({
+  Mahjongg.Hamster = Ember.Object.extend({
     remainingChores: Ember.computed.filterBy('chores', 'done', false)
   });
 
-  var hamster = App.Hamster.create({chores: [
+  var hamster = Mahjongg.Hamster.create({chores: [
     {name: 'cook', done: true},
     {name: 'clean', done: true},
     {name: 'write more unit tests', done: false}
@@ -16766,11 +16766,11 @@ Ember.computed.filterProperty = Ember.computed.filterBy;
   Example
 
   ```javascript
-  App.Hamster = Ember.Object.extend({
+  Mahjongg.Hamster = Ember.Object.extend({
     uniqueFruits: Ember.computed.uniq('fruits')
   });
 
-  var hamster = App.Hamster.create({fruits: [
+  var hamster = Mahjongg.Hamster.create({fruits: [
     'banana',
     'grape',
     'kale',
@@ -16911,12 +16911,12 @@ Ember.computed.intersect = function () {
   Example
 
   ```javascript
-  App.Hamster = Ember.Object.extend({
+  Mahjongg.Hamster = Ember.Object.extend({
     likes: ['banana', 'grape', 'kale'],
     wants: Ember.computed.setDiff('likes', 'fruits')
   });
 
-  var hamster = App.Hamster.create({fruits: [
+  var hamster = Mahjongg.Hamster.create({fruits: [
     'grape',
     'kale',
   ]});
@@ -18113,7 +18113,7 @@ Ember.TargetActionSupport = Ember.Mixin.create({
   and target will be retrieved from properties of the object. For example:
 
   ```javascript
-  App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {
+  Mahjongg.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {
     target: Ember.computed.alias('controller'),
     action: 'save',
     actionContext: Ember.computed.alias('context'),
@@ -18128,7 +18128,7 @@ Ember.TargetActionSupport = Ember.Mixin.create({
   an optional object argument to `triggerAction` as well.
 
   ```javascript
-  App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {
+  Mahjongg.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {
     click: function() {
       this.triggerAction({
         action: 'save',
@@ -18145,7 +18145,7 @@ Ember.TargetActionSupport = Ember.Mixin.create({
   to `triggerAction`, or a combination:
 
   ```javascript
-  App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {
+  Mahjongg.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {
     target: Ember.computed.alias('controller'),
     click: function() {
       this.triggerAction({
@@ -18210,14 +18210,14 @@ Ember.TargetActionSupport = Ember.Mixin.create({
   This mixin allows for Ember objects to subscribe to and emit events.
 
   ```javascript
-  App.Person = Ember.Object.extend(Ember.Evented, {
+  Mahjongg.Person = Ember.Object.extend(Ember.Evented, {
     greet: function() {
       // ...
       this.trigger('greet');
     }
   });
 
-  var person = App.Person.create();
+  var person = Mahjongg.Person.create();
 
   person.on('greet', function() {
     console.log('Our person has greeted');
@@ -18504,7 +18504,7 @@ Ember.ActionHandler = Ember.Mixin.create({
     or mixins rather than just replace the entire hash, e.g.:
 
     ```js
-    App.CanDisplayBanner = Ember.Mixin.create({
+    Mahjongg.CanDisplayBanner = Ember.Mixin.create({
       actions: {
         displayBanner: function(msg) {
           // ...
@@ -18512,7 +18512,7 @@ Ember.ActionHandler = Ember.Mixin.create({
       }
     });
 
-    App.WelcomeRoute = Ember.Route.extend(App.CanDisplayBanner, {
+    Mahjongg.WelcomeRoute = Ember.Route.extend(Mahjongg.CanDisplayBanner, {
       actions: {
         playMusic: function() {
           // ...
@@ -18532,7 +18532,7 @@ Ember.ActionHandler = Ember.Mixin.create({
     Component object:
 
     ```js
-    App.SongRoute = Ember.Route.extend({
+    Mahjongg.SongRoute = Ember.Route.extend({
       actions: {
         myAction: function() {
           this.controllerFor("song");
@@ -18550,7 +18550,7 @@ Ember.ActionHandler = Ember.Mixin.create({
     Take for example the following routes:
 
     ```js
-    App.DebugRoute = Ember.Mixin.create({
+    Mahjongg.DebugRoute = Ember.Mixin.create({
       actions: {
         debugRouteInformation: function() {
           console.debug("trololo");
@@ -18558,10 +18558,10 @@ Ember.ActionHandler = Ember.Mixin.create({
       }
     });
 
-    App.AnnoyingDebugRoute = Ember.Route.extend(App.DebugRoute, {
+    Mahjongg.AnnoyingDebugRoute = Ember.Route.extend(Mahjongg.DebugRoute, {
       actions: {
         debugRouteInformation: function() {
-          // also call the debugRouteInformation of mixed in App.DebugRoute
+          // also call the debugRouteInformation of mixed in Mahjongg.DebugRoute
           this._super();
 
           // show additional annoyance
@@ -18578,20 +18578,20 @@ Ember.ActionHandler = Ember.Mixin.create({
     you must return `true` from the handler:
 
     ```js
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource("album", function() {
         this.route("song");
       });
     });
 
-    App.AlbumRoute = Ember.Route.extend({
+    Mahjongg.AlbumRoute = Ember.Route.extend({
       actions: {
         startPlaying: function() {
         }
       }
     });
 
-    App.AlbumSongRoute = Ember.Route.extend({
+    Mahjongg.AlbumSongRoute = Ember.Route.extend({
       actions: {
         startPlaying: function() {
           // ...
@@ -18651,7 +18651,7 @@ Ember.ActionHandler = Ember.Mixin.create({
     Example
 
     ```js
-    App.WelcomeRoute = Ember.Route.extend({
+    Mahjongg.WelcomeRoute = Ember.Route.extend({
       actions: {
         playTheme: function() {
            this.send('playMusic', 'theme.mp3');
@@ -21129,11 +21129,11 @@ var get = Ember.get, set = Ember.set, forEach = Ember.EnumerableUtils.forEach,
   ```
 
   ```javascript
-  App.PostsController = Ember.ArrayController.extend({
+  Mahjongg.PostsController = Ember.ArrayController.extend({
     itemController: 'post'
   });
 
-  App.PostController = Ember.ObjectController.extend({
+  Mahjongg.PostController = Ember.ObjectController.extend({
     // the `title` property will be proxied to the underlying post.
 
     titleLength: function() {
@@ -21149,12 +21149,12 @@ var get = Ember.get, set = Ember.set, forEach = Ember.EnumerableUtils.forEach,
   For example:
 
   ```javascript
-  App.MyArrayController = Ember.ArrayController.extend({
+  Mahjongg.MyArrayController = Ember.ArrayController.extend({
     lookupItemController: function( object ) {
       if (object.get('isSpecial')) {
-        return "special"; // use App.SpecialController
+        return "special"; // use Mahjongg.SpecialController
       } else {
-        return "regular"; // use App.RegularController
+        return "regular"; // use Mahjongg.RegularController
       }
     }
   });
@@ -21191,12 +21191,12 @@ Ember.ArrayController = Ember.ArrayProxy.extend(Ember.ControllerMixin,
     For example:
 
     ```javascript
-    App.MyArrayController = Ember.ArrayController.extend({
+    Mahjongg.MyArrayController = Ember.ArrayController.extend({
       lookupItemController: function( object ) {
         if (object.get('isSpecial')) {
-          return "special"; // use App.SpecialController
+          return "special"; // use Mahjongg.SpecialController
         } else {
-          return "regular"; // use App.RegularController
+          return "regular"; // use Mahjongg.RegularController
         }
       }
     });
@@ -25766,9 +25766,9 @@ var get = Ember.get, set = Ember.set, fmt = Ember.String.fmt;
   CustomCollectionView = Ember.CollectionView.extend({
     createChildView: function(viewClass, attrs) {
       if (attrs.content.kind == 'album') {
-        viewClass = App.AlbumView;
+        viewClass = Mahjongg.AlbumView;
       } else {
-        viewClass = App.SongView;
+        viewClass = Mahjongg.SongView;
       }
       return this._super(viewClass, attrs);
     }
@@ -26217,7 +26217,7 @@ var get = Ember.get, set = Ember.set, isNone = Ember.isNone,
   `hello` for the `app-profile` component:
 
   ```javascript
-  App.AppProfileComponent = Ember.Component.extend({
+  Mahjongg.AppProfileComponent = Ember.Component.extend({
     actions: {
       hello: function(name) {
         console.log("Hello", name);
@@ -26349,7 +26349,7 @@ Ember.Component = Ember.View.extend(Ember.TargetActionSupport, Ember.ComponentTe
 
 
     ```javascript
-    App.PlayButtonComponent = Ember.Component.extend({
+    Mahjongg.PlayButtonComponent = Ember.Component.extend({
       click: function(){
         if (this.get('isPlaying')) {
           this.sendAction('play');
@@ -26375,7 +26375,7 @@ Ember.Component = Ember.View.extend(Ember.TargetActionSupport, Ember.ComponentTe
 
 
     ```javascript
-    App.ApplicationController = Ember.Controller.extend({
+    Mahjongg.ApplicationController = Ember.Controller.extend({
       actions: {
         musicStarted: function(){
           // called when the play button is clicked
@@ -26393,7 +26393,7 @@ Ember.Component = Ember.View.extend(Ember.TargetActionSupport, Ember.ComponentTe
     is assumed.
 
     ```javascript
-    App.NextButtonComponent = Ember.Component.extend({
+    Mahjongg.NextButtonComponent = Ember.Component.extend({
       click: function(){
         this.sendAction();
       }
@@ -26406,7 +26406,7 @@ Ember.Component = Ember.View.extend(Ember.TargetActionSupport, Ember.ComponentTe
     ```
 
     ```javascript
-    App.ApplicationController = Ember.Controller.extend({
+    Mahjongg.ApplicationController = Ember.Controller.extend({
       actions: {
         playNextSongInAlbum: function(){
           ...
@@ -26472,7 +26472,7 @@ event handling in custom View subclasses.
 For example:
 
 ```javascript
-App.SaveButtonView = Ember.View.extend(Ember.ViewTargetActionSupport, {
+Mahjongg.SaveButtonView = Ember.View.extend(Ember.ViewTargetActionSupport, {
   action: 'save',
   click: function() {
     this.triggerAction(); // Sends the `save` action, along with the current context
@@ -26485,7 +26485,7 @@ The `action` can be provided as properties of an optional object argument
 to `triggerAction` as well.
 
 ```javascript
-App.SaveButtonView = Ember.View.extend(Ember.ViewTargetActionSupport, {
+Mahjongg.SaveButtonView = Ember.View.extend(Ember.ViewTargetActionSupport, {
   click: function() {
     this.triggerAction({
       action: 'save'
@@ -27083,11 +27083,11 @@ Ember.Handlebars = objectCreate(Handlebars);
 
   ## Custom view helper example
 
-  Assuming a view subclass named `App.CalendarView` were defined, a helper
+  Assuming a view subclass named `Mahjongg.CalendarView` were defined, a helper
   for rendering instances of this view could be registered as follows:
 
   ```javascript
-  Ember.Handlebars.helper('calendar', App.CalendarView):
+  Ember.Handlebars.helper('calendar', Mahjongg.CalendarView):
   ```
 
   The above bound helper can be used inside of templates as follows:
@@ -27099,7 +27099,7 @@ Ember.Handlebars = objectCreate(Handlebars);
   Which is functionally equivalent to:
 
   ```handlebars
-  {{view App.CalendarView}}
+  {{view Mahjongg.CalendarView}}
   ```
 
   Options in the helper will be passed to the view in exactly the same
@@ -29587,7 +29587,7 @@ var get = Ember.get, handlebarsGet = Ember.Handlebars.get, fmt = Ember.String.fm
   Given an empty `<body>` the following template:
 
   ```handlebars
-  {{#collection contentBinding="App.items"}}
+  {{#collection contentBinding="Mahjongg.items"}}
     Hi {{view.content.name}}
   {{/collection}}
   ```
@@ -29595,8 +29595,8 @@ var get = Ember.get, handlebarsGet = Ember.Handlebars.get, fmt = Ember.String.fm
   And the following application code
 
   ```javascript
-  App = Ember.Application.create()
-  App.items = [
+  Mahjongg = Ember.Application.create()
+  Mahjongg.items = [
     Ember.Object.create({name: 'Dave'}),
     Ember.Object.create({name: 'Mary'}),
     Ember.Object.create({name: 'Sara'})
@@ -29621,20 +29621,20 @@ var get = Ember.get, handlebarsGet = Ember.Handlebars.get, fmt = Ember.String.fm
   The following template:
 
   ```handlebars
-  {{collection contentBinding="App.items" itemViewClass="App.AnItemView"}}
+  {{collection contentBinding="Mahjongg.items" itemViewClass="Mahjongg.AnItemView"}}
   ```
 
   And application code
 
   ```javascript
-  App = Ember.Application.create();
-  App.items = [
+  Mahjongg = Ember.Application.create();
+  Mahjongg.items = [
     Ember.Object.create({name: 'Dave'}),
     Ember.Object.create({name: 'Mary'}),
     Ember.Object.create({name: 'Sara'})
   ];
 
-  App.AnItemView = Ember.View.extend({
+  Mahjongg.AnItemView = Ember.View.extend({
     template: Ember.Handlebars.compile("Greetings {{view.content.name}}")
   });
   ```
@@ -29656,7 +29656,7 @@ var get = Ember.get, handlebarsGet = Ember.Handlebars.get, fmt = Ember.String.fm
   the helper by passing it as the first argument:
 
   ```handlebars
-  {{#collection App.MyCustomCollectionClass contentBinding="App.items"}}
+  {{#collection Mahjongg.MyCustomCollectionClass contentBinding="Mahjongg.items"}}
     Hi {{view.content.name}}
   {{/collection}}
   ```
@@ -29669,7 +29669,7 @@ var get = Ember.get, handlebarsGet = Ember.Handlebars.get, fmt = Ember.String.fm
   item (note the camelcasing):
 
   ```handlebars
-  {{#collection contentBinding="App.items"
+  {{#collection contentBinding="Mahjongg.items"
                 itemTagName="p"
                 itemClassNames="greeting"}}
     Howdy {{view.content.name}}
@@ -30235,15 +30235,15 @@ GroupedEach.prototype = {
   The following template:
 
   ```handlebars
-  {{#view App.MyView }}
-    {{each view.items itemViewClass="App.AnItemView"}}
+  {{#view Mahjongg.MyView }}
+    {{each view.items itemViewClass="Mahjongg.AnItemView"}}
   {{/view}}
   ```
 
   And application code
 
   ```javascript
-  App = Ember.Application.create({
+  Mahjongg = Ember.Application.create({
     MyView: Ember.View.extend({
       items: [
         Ember.Object.create({name: 'Dave'}),
@@ -30253,7 +30253,7 @@ GroupedEach.prototype = {
     })
   });
 
-  App.AnItemView = Ember.View.extend({
+  Mahjongg.AnItemView = Ember.View.extend({
     template: Ember.Handlebars.compile("Greetings {{name}}")
   });
   ```
@@ -30286,7 +30286,7 @@ GroupedEach.prototype = {
   or synthesis for display:
 
   ```javascript
-  App.DeveloperController = Ember.ObjectController.extend({
+  Mahjongg.DeveloperController = Ember.ObjectController.extend({
     isAvailableForHire: function() {
       return !this.get('content.isEmployed') && this.get('content.isSeekingWork');
     }.property('isEmployed', 'isSeekingWork')
@@ -31199,7 +31199,7 @@ Ember.SelectOptgroup = Ember.CollectionView.extend({
   Example:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     names: ["Yehuda", "Tom"]
   });
   ```
@@ -31221,7 +31221,7 @@ Ember.SelectOptgroup = Ember.CollectionView.extend({
   `value` property:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     selectedName: 'Tom',
     names: ["Yehuda", "Tom"]
   });
@@ -31261,7 +31261,7 @@ Ember.SelectOptgroup = Ember.CollectionView.extend({
   element's text. Both paths must reference each object itself as `content`:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     programmers: [
       {firstName: "Yehuda", id: 1},
       {firstName: "Tom",    id: 2}
@@ -31289,7 +31289,7 @@ Ember.SelectOptgroup = Ember.CollectionView.extend({
   can be bound to a property on another object:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     programmers: [
       {firstName: "Yehuda", id: 1},
       {firstName: "Tom",    id: 2}
@@ -31328,7 +31328,7 @@ Ember.SelectOptgroup = Ember.CollectionView.extend({
   element:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     selectedPerson: null,
     programmers: [
       {firstName: "Yehuda", id: 1},
@@ -31365,7 +31365,7 @@ Ember.SelectOptgroup = Ember.CollectionView.extend({
   results in there being no `<option>` with a `selected` attribute:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     selectedProgrammer: null,
     programmers: [
       "Yehuda",
@@ -31397,7 +31397,7 @@ Ember.SelectOptgroup = Ember.CollectionView.extend({
   with the `prompt` option:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     selectedProgrammer: null,
     programmers: [
       "Yehuda",
@@ -31820,7 +31820,7 @@ function program7(depth0,data) {
   ## Bound:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     firstName: "Stanley",
     entryNotAllowed: true
   });
@@ -31889,7 +31889,7 @@ function program7(depth0,data) {
   ## Bound:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     isAdmin: true
   });
   ```
@@ -31989,12 +31989,12 @@ Ember.Handlebars.registerHelper('input', function(options) {
 
   Bound:
 
-  In the following example, the `writtenWords` property on `App.ApplicationController`
+  In the following example, the `writtenWords` property on `Mahjongg.ApplicationController`
   will be updated live as the user types 'Lots of text that IS bound' into
   the text area of their browser's window.
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     writtenWords: "Lots of text that IS bound"
   });
   ```
@@ -32015,7 +32015,7 @@ Ember.Handlebars.registerHelper('input', function(options) {
   somewhere else on your screen, you could use `Ember.computed.oneWay`:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     writtenWords: "Lots of text that IS bound",
     outputWrittenWords: Ember.computed.oneWay("writtenWords")
   });
@@ -32050,7 +32050,7 @@ Ember.Handlebars.registerHelper('input', function(options) {
   your really binding in both directions:
 
   ```javascript
-  App.ApplicationController = Ember.Controller.extend({
+  Mahjongg.ApplicationController = Ember.Controller.extend({
     writtenWords: "Lots of text that IS bound",
     twoWayWrittenWords: Ember.computed.alias("writtenWords")
   });
@@ -34857,7 +34857,7 @@ Ember.controllerFor = function(container, controllerName, lookupOptions) {
   controller is generated.
 
   You can customize your generated controllers by defining
-  `App.ObjectController` or `App.ArrayController`.
+  `Mahjongg.ObjectController` or `Mahjongg.ArrayController`.
 
   @for Ember
   @method generateControllerFactory
@@ -35767,15 +35767,15 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
 
     This is useful when multiple routes would benefit from using the same view
     because it doesn't require a custom `renderTemplate` method. For example,
-    the following routes will all render using the `App.PostsListView` view:
+    the following routes will all render using the `Mahjongg.PostsListView` view:
 
     ```js
     var PostsList = Ember.Route.extend({
       viewName: 'postsList',
     });
 
-    App.PostsIndexRoute = PostsList.extend();
-    App.PostsArchivedRoute = PostsList.extend();
+    Mahjongg.PostsIndexRoute = PostsList.extend();
+    Mahjongg.PostsArchivedRoute = PostsList.extend();
     ```
 
     @property viewName
@@ -35796,8 +35796,8 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
       templateName: 'posts/list'
     });
 
-    App.PostsIndexRoute = PostsList.extend();
-    App.PostsArchivedRoute = PostsList.extend();
+    Mahjongg.PostsIndexRoute = PostsList.extend();
+    Mahjongg.PostsArchivedRoute = PostsList.extend();
     ```
 
     @property templateName
@@ -35810,7 +35810,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     The name of the controller to associate with this route.
 
     By default, Ember will lookup a route's controller that matches the name
-    of the route (i.e. `App.PostController` for `App.PostRoute`). However,
+    of the route (i.e. `Mahjongg.PostController` for `Mahjongg.PostRoute`). However,
     if you would like to define a specific controller to use, you can do so
     using this property.
 
@@ -35841,7 +35841,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     or mixins rather than just replace the entire hash, e.g.:
 
     ```js
-    App.CanDisplayBanner = Ember.Mixin.create({
+    Mahjongg.CanDisplayBanner = Ember.Mixin.create({
       actions: {
         displayBanner: function(msg) {
           // ...
@@ -35849,7 +35849,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
       }
     });
 
-    App.WelcomeRoute = Ember.Route.extend(App.CanDisplayBanner, {
+    Mahjongg.WelcomeRoute = Ember.Route.extend(Mahjongg.CanDisplayBanner, {
       actions: {
         playMusic: function() {
           // ...
@@ -35868,7 +35868,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     is the Route object:
 
     ```js
-    App.SongRoute = Ember.Route.extend({
+    Mahjongg.SongRoute = Ember.Route.extend({
       actions: {
         myAction: function() {
           this.controllerFor("song");
@@ -35886,7 +35886,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     Take for example the following routes:
 
     ```js
-    App.DebugRoute = Ember.Mixin.create({
+    Mahjongg.DebugRoute = Ember.Mixin.create({
       actions: {
         debugRouteInformation: function() {
           console.debug("trololo");
@@ -35894,10 +35894,10 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
       }
     });
 
-    App.AnnoyingDebugRoute = Ember.Route.extend(App.DebugRoute, {
+    Mahjongg.AnnoyingDebugRoute = Ember.Route.extend(Mahjongg.DebugRoute, {
       actions: {
         debugRouteInformation: function() {
-          // also call the debugRouteInformation of mixed in App.DebugRoute
+          // also call the debugRouteInformation of mixed in Mahjongg.DebugRoute
           this._super();
 
           // show additional annoyance
@@ -35914,20 +35914,20 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     you must return `true` from the handler:
 
     ```js
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource("album", function() {
         this.route("song");
       });
     });
 
-    App.AlbumRoute = Ember.Route.extend({
+    Mahjongg.AlbumRoute = Ember.Route.extend({
       actions: {
         startPlaying: function() {
         }
       }
     });
 
-    App.AlbumSongRoute = Ember.Route.extend({
+    Mahjongg.AlbumSongRoute = Ember.Route.extend({
       actions: {
         startPlaying: function() {
           // ...
@@ -35957,7 +35957,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     half-filled out:
 
     ```js
-    App.ContactFormRoute = Ember.Route.extend({
+    Mahjongg.ContactFormRoute = Ember.Route.extend({
       actions: {
         willTransition: function(transition) {
           if (this.controller.get('userHasEnteredData')) {
@@ -35991,7 +35991,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     as well as any unhandled errors from child routes:
 
     ```js
-    App.AdminRoute = Ember.Route.extend({
+    Mahjongg.AdminRoute = Ember.Route.extend({
       beforeModel: function() {
         return Ember.RSVP.reject("bad things!");
       },
@@ -36020,7 +36020,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     `error` handler on `ApplicationRoute`:
 
     ```js
-    App.ApplicationRoute = Ember.Route.extend({
+    Mahjongg.ApplicationRoute = Ember.Route.extend({
       actions: {
         error: function(error, transition) {
           this.controllerFor('banner').displayError(error.message);
@@ -36093,7 +36093,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     resource tree.
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource('blogPost', {path:':blogPostId'}, function(){
         this.resource('blogComment', {path: ':blogCommentId'});
       });
@@ -36117,13 +36117,13 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     Simple Transition Example
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.route("index");
       this.route("secret");
       this.route("fourOhFour", { path: "*:"});
     });
 
-    App.IndexRoute = Ember.Route.extend({
+    Mahjongg.IndexRoute = Ember.Route.extend({
       actions: {
         moveToSecret: function(context){
           if (authorized()){
@@ -36138,13 +36138,13 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     Transition to a nested route
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource('articles', { path: '/articles' }, function() {
         this.route('new');
       });
     });
 
-    App.IndexRoute = Ember.Route.extend({
+    Mahjongg.IndexRoute = Ember.Route.extend({
       actions: {
         transitionToNewArticle: function() {
           this.transitionTo('articles.new');
@@ -36156,14 +36156,14 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     Multiple Models Example
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.route("index");
       this.resource('breakfast', {path:':breakfastId'}, function(){
         this.resource('cereal', {path: ':cerealId'});
       });
     });
 
-    App.IndexRoute = Ember.Route.extend({
+    Mahjongg.IndexRoute = Ember.Route.extend({
       actions: {
         moveToChocolateCereal: function(){
           var cereal = { cerealId: "ChocolateYumminess"},
@@ -36240,12 +36240,12 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     Example
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.route("index");
       this.route("secret");
     });
 
-    App.SecretRoute = Ember.Route.extend({
+    Mahjongg.SecretRoute = Ember.Route.extend({
       afterModel: function() {
         if (!authorized()){
           this.replaceWith('index');
@@ -36273,11 +36273,11 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     Example
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.route("index");
     });
 
-    App.ApplicationRoute = Ember.Route.extend({
+    Mahjongg.ApplicationRoute = Ember.Route.extend({
       actions: {
         track: function(arg) {
           console.log(arg, 'was clicked');
@@ -36285,7 +36285,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
       }
     });
 
-    App.IndexRoute = Ember.Route.extend({
+    Mahjongg.IndexRoute = Ember.Route.extend({
       actions: {
         trackIfDebug: function(arg) {
           if (debug) {
@@ -36364,16 +36364,16 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     the server that is required to enter a route.
 
     ```js
-    App.PostRoute = Ember.Route.extend({
+    Mahjongg.PostRoute = Ember.Route.extend({
       beforeModel: function(transition) {
-        if (!App.Post) {
+        if (!Mahjongg.Post) {
           return Ember.$.getScript('/models/post.js');
         }
       }
     });
     ```
 
-    If `App.Post` doesn't exist in the above example,
+    If `Mahjongg.Post` doesn't exist in the above example,
     `beforeModel` will use jQuery's `getScript`, which
     returns a promise that resolves after the server has
     successfully retrieved and executed the code from the
@@ -36385,9 +36385,9 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     hook):
 
     ```js
-    App.PostRoute = Ember.Route.extend({
+    Mahjongg.PostRoute = Ember.Route.extend({
       beforeModel: function(transition) {
-        if (!App.Post) {
+        if (!Mahjongg.Post) {
           var self = this;
           return Ember.$.getScript('post.js').then(null, function(e) {
             self.transitionTo('help');
@@ -36426,7 +36426,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     resolved.
 
     ```js
-    App.PostsRoute = Ember.Route.extend({
+    Mahjongg.PostsRoute = Ember.Route.extend({
       afterModel: function(posts, transition) {
         if (posts.length === 1) {
           this.transitionTo('post.show', posts[0]);
@@ -36491,17 +36491,17 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     this route.
 
     ```js
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource('post', {path: '/posts/:post_id'});
     });
     ```
 
-    The model for the `post` route is `App.Post.find(params.post_id)`.
+    The model for the `post` route is `Mahjongg.Post.find(params.post_id)`.
 
     By default, if your route has a dynamic segment ending in `_id`:
 
     * The model class is determined from the segment (`post_id`'s
-      class is `App.Post`)
+      class is `Mahjongg.Post`)
     * The find method is called on the model class with the value of
       the dynamic segment.
 
@@ -36520,9 +36520,9 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     Example
 
     ```js
-    App.PostRoute = Ember.Route.extend({
+    Mahjongg.PostRoute = Ember.Route.extend({
       model: function(params) {
-        return App.Post.find(params.post_id);
+        return Mahjongg.Post.find(params.post_id);
       }
     });
     ```
@@ -36625,11 +36625,11 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     for the URL.
 
     ```js
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource('post', {path: '/posts/:post_id'});
     });
 
-    App.PostRoute = Ember.Route.extend({
+    Mahjongg.PostRoute = Ember.Route.extend({
       model: function(params) {
         // the server returns `{ id: 12 }`
         return jQuery.getJSON("/posts/" + params.post_id);
@@ -36686,9 +36686,9 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     `_super`:
 
     ```js
-    App.PhotosRoute = Ember.Route.extend({
+    Mahjongg.PhotosRoute = Ember.Route.extend({
       model: function() {
-        return App.Photo.find();
+        return Mahjongg.Photo.find();
       },
 
       setupController: function (controller, model) {
@@ -36716,19 +36716,19 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     As an example, consider the router:
 
     ```js
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource('post', {path: '/posts/:post_id'});
     });
     ```
 
-    For the `post` route, a controller named `App.PostController` would
+    For the `post` route, a controller named `Mahjongg.PostController` would
     be used if it is defined. If it is not defined, an `Ember.ObjectController`
     instance would be used.
 
     Example
 
     ```js
-    App.PostRoute = Ember.Route.extend({
+    Mahjongg.PostRoute = Ember.Route.extend({
       setupController: function(controller, model) {
         controller.set('model', model);
       }
@@ -36752,7 +36752,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     associated route or using `generateController`.
 
     ```js
-    App.PostRoute = Ember.Route.extend({
+    Mahjongg.PostRoute = Ember.Route.extend({
       setupController: function(controller, post) {
         this._super(controller, post);
         this.controllerFor('posts').set('currentPost', post);
@@ -36796,7 +36796,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     Example
 
     ```js
-    App.PostRoute = Ember.Route.extend({
+    Mahjongg.PostRoute = Ember.Route.extend({
       setupController: function(controller, post) {
         this._super(controller, post);
         this.generateController('posts', post);
@@ -36828,13 +36828,13 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     Example
 
     ```js
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
         this.resource('post', { path: '/post/:post_id' }, function() {
             this.resource('comments');
         });
     });
 
-    App.CommentsRoute = Ember.Route.extend({
+    Mahjongg.CommentsRoute = Ember.Route.extend({
         afterModel: function() {
             this.set('post', this.modelFor('post'));
         }
@@ -36873,7 +36873,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     alternative templates.
 
     ```js
-    App.PostsRoute = Ember.Route.extend({
+    Mahjongg.PostsRoute = Ember.Route.extend({
       renderTemplate: function(controller, model) {
         var favController = this.controllerFor('favoritePost');
 
@@ -36905,12 +36905,12 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     For example:
 
     ```js
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.route('index');
       this.resource('post', {path: '/posts/:post_id'});
     });
 
-    App.PostRoute = App.Route.extend({
+    Mahjongg.PostRoute = Mahjongg.Route.extend({
       renderTemplate: function() {
         this.render();
       }
@@ -36929,7 +36929,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     You can override this behavior:
 
     ```js
-    App.PostRoute = App.Route.extend({
+    Mahjongg.PostRoute = Mahjongg.Route.extend({
       renderTemplate: function() {
         this.render('myPost', {   // the template to render
           into: 'index',          // the template to render into
@@ -36941,7 +36941,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     ```
 
     Remember that the controller's `content` will be the route's model. In
-    this case, the default model will be `App.Post.find(params.post_id)`.
+    this case, the default model will be `Mahjongg.Post.find(params.post_id)`.
 
     @method render
     @param {String} name the name of the template to render
@@ -37007,7 +37007,7 @@ Ember.Route = Ember.Object.extend(Ember.ActionHandler, {
     Example:
 
     ```js
-    App.ApplicationRoute = App.Route.extend({
+    Mahjongg.ApplicationRoute = Mahjongg.Route.extend({
       actions: {
         showModal: function(evt) {
           this.render(evt.modalName, {
@@ -37416,7 +37416,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
       Example:
 
       ```javascript
-      App.MyLinkView = Ember.LinkView.extend({
+      Mahjongg.MyLinkView = Ember.LinkView.extend({
         init: function() {
           this._super();
           Ember.Logger.log('Event is ' + this.get('eventName'));
@@ -37930,7 +37930,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     the model context of the linked route:
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource("photoGallery", {path: "hamster-photos/:photo_id"});
     });
     ```
@@ -37955,7 +37955,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     route with the dynamic segments:
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource("photoGallery", {path: "hamster-photos/:photo_id"}, function() {
         this.route("comment", {path: "comments/:comment_id"});
       });
@@ -37982,7 +37982,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     of the dynamic segment:
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource("photoGallery", {path: "hamster-photos/:photo_id"});
     });
     ```
@@ -38147,14 +38147,14 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     ```
 
     By default, a template based on Ember's naming conventions will be rendered
-    into the `outlet` (e.g. `App.PostsRoute` will render the `posts` template).
+    into the `outlet` (e.g. `Mahjongg.PostsRoute` will render the `posts` template).
 
     You can render a different template by using the `render()` method in the
     route's `renderTemplate` hook. The following will render the `favoritePost`
     template into the `outlet`.
 
     ``` javascript
-    App.PostsRoute = Ember.Route.extend({
+    Mahjongg.PostsRoute = Ember.Route.extend({
       renderTemplate: function() {
         this.render('favoritePost');
       }
@@ -38173,7 +38173,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
 
     ``` javascript
-    App.PostsRoute = Ember.Route.extend({
+    Mahjongg.PostsRoute = Ember.Route.extend({
       renderTemplate: function() {
         this.render('favoritePost', { outlet: 'favoritePost' });
         this.render('posts', { outlet: 'posts' });
@@ -38189,7 +38189,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     ```
 
     ``` javascript
-    App.SectionContainer = Ember.ContainerView.extend({
+    Mahjongg.SectionContainer = Ember.ContainerView.extend({
       tagName: 'section',
       classNames: ['special']
     });
@@ -38266,7 +38266,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     Example:
 
     ```javascript
-    App.NavigationController = Ember.Controller.extend({
+    Mahjongg.NavigationController = Ember.Controller.extend({
       who: "world"
     });
     ```
@@ -38550,7 +38550,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     And application code
 
     ```javascript
-    App.ApplicationController = Ember.Controller.extend({
+    Mahjongg.ApplicationController = Ember.Controller.extend({
       actions: {
         anActionName: function() {
         }
@@ -38569,7 +38569,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     ```
 
     Clicking "click me" will trigger the `anActionName` action of the
-    `App.ApplicationController`. In this case, no additional parameters will be passed.
+    `Mahjongg.ApplicationController`. In this case, no additional parameters will be passed.
 
     If you provide additional parameters to the helper:
 
@@ -38665,7 +38665,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     ```
 
     ```javascript
-    App.ApplicationView = Ember.View.extend({
+    Mahjongg.ApplicationView = Ember.View.extend({
       actions: {
         anActionName: function(){}
       }
@@ -38781,7 +38781,7 @@ Ember.ControllerMixin.reopen({
     resource tree.
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource('blogPost', {path:':blogPostId'}, function(){
         this.resource('blogComment', {path: ':blogCommentId'});
       });
@@ -38855,7 +38855,7 @@ Ember.ControllerMixin.reopen({
     resource tree.
 
     ```javascript
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource('blogPost', {path:':blogPostId'}, function(){
         this.resource('blogComment', {path: ':blogCommentId'});
       });
@@ -39101,13 +39101,13 @@ var get = Ember.get, set = Ember.set;
   Example:
 
   ```javascript
-  App.Router.map(function() {
+  Mahjongg.Router.map(function() {
     this.resource('posts', function() {
       this.route('new');
     });
   });
 
-  App.Router.reopen({
+  Mahjongg.Router.reopen({
     location: 'hash'
   });
   ```
@@ -39122,13 +39122,13 @@ var get = Ember.get, set = Ember.set;
   Example:
 
   ```javascript
-  App.Router.map(function() {
+  Mahjongg.Router.map(function() {
     this.resource('posts', function() {
       this.route('new');
     });
   });
 
-  App.Router.reopen({
+  Mahjongg.Router.reopen({
     location: 'history'
   });
   ```
@@ -39150,13 +39150,13 @@ var get = Ember.get, set = Ember.set;
   Example:
 
   ```javascript
-  App.Router.map(function() {
+  Mahjongg.Router.map(function() {
     this.resource('posts', function() {
       this.route('new');
     });
   });
 
-  App.Router.reopen({
+  Mahjongg.Router.reopen({
     location: 'auto'
   });
   ```
@@ -39176,7 +39176,7 @@ var get = Ember.get, set = Ember.set;
 
   Using `NoneLocation` causes Ember to not store the applications URL state
   in the actual URL. This is generally used for testing purposes, and is one
-  of the changes made when calling `App.setupForTesting()`.
+  of the changes made when calling `Mahjongg.setupForTesting()`.
 
   ## Location API
 
@@ -40272,7 +40272,7 @@ Ember.Resolver = Ember.Object.extend({
   * templates are looked up on `Ember.TEMPLATES`
   * other names are looked up on the application after converting
     the name. For example, `controller:post` looks up
-    `App.PostController` by default.
+    `Mahjongg.PostController` by default.
   * there are some nuances (see examples below)
 
   ### How Resolving Works
@@ -40294,7 +40294,7 @@ Ember.Resolver = Ember.Object.extend({
   is resolved like so:
 
   ```javascript
-  App = Ember.Application.create({
+  Mahjongg = Ember.Application.create({
     Resolver: Ember.DefaultResolver.extend({
       resolveTemplate: function(parsedName) {
         var resolvedTemplate = this._super(parsedName);
@@ -40314,20 +40314,20 @@ Ember.Resolver = Ember.Object.extend({
   'template:blogPost' //=> Ember.TEMPLATES['blogPost']
                       //   OR
                       //   Ember.TEMPLATES['blog_post']
-  'controller:post' //=> App.PostController
-  'controller:posts.index' //=> App.PostsIndexController
+  'controller:post' //=> Mahjongg.PostController
+  'controller:posts.index' //=> Mahjongg.PostsIndexController
   'controller:blog/post' //=> Blog.PostController
   'controller:basic' //=> Ember.Controller
-  'route:post' //=> App.PostRoute
-  'route:posts.index' //=> App.PostsIndexRoute
+  'route:post' //=> Mahjongg.PostRoute
+  'route:posts.index' //=> Mahjongg.PostsIndexRoute
   'route:blog/post' //=> Blog.PostRoute
   'route:basic' //=> Ember.Route
-  'view:post' //=> App.PostView
-  'view:posts.index' //=> App.PostsIndexView
+  'view:post' //=> Mahjongg.PostView
+  'view:posts.index' //=> Mahjongg.PostsIndexView
   'view:blog/post' //=> Blog.PostView
   'view:basic' //=> Ember.View
-  'foo:post' //=> App.PostFoo
-  'model:post' //=> App.Post
+  'foo:post' //=> Mahjongg.PostFoo
+  'model:post' //=> Mahjongg.Post
   ```
 
   @class DefaultResolver
@@ -40607,7 +40607,7 @@ DeprecatedContainer.prototype = {
   very first thing you should do in your application is create the instance:
 
   ```javascript
-  window.App = Ember.Application.create();
+  window.Mahjongg = Ember.Application.create();
   ```
 
   Typically, the application object is the only global variable. All other
@@ -40617,7 +40617,7 @@ DeprecatedContainer.prototype = {
   For example, if you define a view class, it might look like this:
 
   ```javascript
-  App.MyView = Ember.View.extend();
+  Mahjongg.MyView = Ember.View.extend();
   ```
 
   By default, calling `Ember.Application.create()` will automatically initialize
@@ -40659,7 +40659,7 @@ DeprecatedContainer.prototype = {
   names by setting the application's `customEvents` property:
 
   ```javascript
-  App = Ember.Application.create({
+  Mahjongg = Ember.Application.create({
     customEvents: {
       // add support for the paste event
       paste: "paste"
@@ -40676,7 +40676,7 @@ DeprecatedContainer.prototype = {
   should be delegated, set your application's `rootElement` property:
 
   ```javascript
-  window.App = Ember.Application.create({
+  window.Mahjongg = Ember.Application.create({
     rootElement: '#ember-app'
   });
   ```
@@ -40719,7 +40719,7 @@ DeprecatedContainer.prototype = {
   the `LOG_TRANSITIONS_INTERNAL` flag:
 
   ```javascript
-  window.App = Ember.Application.create({
+  window.Mahjongg = Ember.Application.create({
     LOG_TRANSITIONS: true, // basic logging of successful transitions
     LOG_TRANSITIONS_INTERNAL: true // detailed logging of all routing steps
   });
@@ -40787,7 +40787,7 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
     corresponding view method name as the value. For example:
 
     ```javascript
-    App = Ember.Application.create({
+    Mahjongg = Ember.Application.create({
       customEvents: {
         // add support for the paste event
         paste: "paste"
@@ -40855,9 +40855,9 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
     This allows application developers to do:
 
     ```javascript
-    var App = Ember.Application.create();
+    var Mahjongg = Ember.Application.create();
 
-    App.Router.map(function() {
+    Mahjongg.Router.map(function() {
       this.resource('posts');
     });
     ```
@@ -40913,12 +40913,12 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
     Example:
 
     ```javascript
-    App = Ember.Application.create();
-    App.deferReadiness();
+    Mahjongg = Ember.Application.create();
+    Mahjongg.deferReadiness();
 
     jQuery.getJSON("/auth-token", function(token) {
-      App.token = token;
-      App.advanceReadiness();
+      Mahjongg.token = token;
+      Mahjongg.advanceReadiness();
     });
     ```
 
@@ -40955,32 +40955,32 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
 
   /**
     Registers a factory that can be used for dependency injection (with
-    `App.inject`) or for service lookup. Each factory is registered with
+    `Mahjongg.inject`) or for service lookup. Each factory is registered with
     a full name including two parts: `type:name`.
 
     A simple example:
 
     ```javascript
-    var App = Ember.Application.create();
-    App.Orange  = Ember.Object.extend();
-    App.register('fruit:favorite', App.Orange);
+    var Mahjongg = Ember.Application.create();
+    Mahjongg.Orange  = Ember.Object.extend();
+    Mahjongg.register('fruit:favorite', Mahjongg.Orange);
     ```
 
-    Ember will resolve factories from the `App` namespace automatically.
-    For example `App.CarsController` will be discovered and returned if
+    Ember will resolve factories from the `Mahjongg` namespace automatically.
+    For example `Mahjongg.CarsController` will be discovered and returned if
     an application requests `controller:cars`.
 
     An example of registering a controller with a non-standard name:
 
     ```javascript
-    var App = Ember.Application.create(),
+    var Mahjongg = Ember.Application.create(),
         Session  = Ember.Controller.extend();
 
-    App.register('controller:session', Session);
+    Mahjongg.register('controller:session', Session);
 
     // The Session controller can now be treated like a normal controller,
     // despite its non-standard name.
-    App.ApplicationController = Ember.Controller.extend({
+    Mahjongg.ApplicationController = Ember.Controller.extend({
       needs: ['session']
     });
     ```
@@ -40992,22 +40992,22 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
     Some examples modifying that default behavior:
 
     ```javascript
-    var App = Ember.Application.create();
+    var Mahjongg = Ember.Application.create();
 
-    App.Person  = Ember.Object.extend();
-    App.Orange  = Ember.Object.extend();
-    App.Email   = Ember.Object.extend();
-    App.session = Ember.Object.create();
+    Mahjongg.Person  = Ember.Object.extend();
+    Mahjongg.Orange  = Ember.Object.extend();
+    Mahjongg.Email   = Ember.Object.extend();
+    Mahjongg.session = Ember.Object.create();
 
-    App.register('model:user', App.Person, {singleton: false });
-    App.register('fruit:favorite', App.Orange);
-    App.register('communication:main', App.Email, {singleton: false});
-    App.register('session', App.session, {instantiate: false});
+    Mahjongg.register('model:user', Mahjongg.Person, {singleton: false });
+    Mahjongg.register('fruit:favorite', Mahjongg.Orange);
+    Mahjongg.register('communication:main', Mahjongg.Email, {singleton: false});
+    Mahjongg.register('session', Mahjongg.session, {instantiate: false});
     ```
 
     @method register
     @param  fullName {String} type:name (e.g., 'model:user')
-    @param  factory {Function} (e.g., App.Person)
+    @param  factory {Function} (e.g., Mahjongg.Person)
     @param  options {Object} (optional) disable instantiation or singleton usage
   **/
   register: function() {
@@ -41026,17 +41026,17 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
     An example of providing a session object to all controllers:
 
     ```javascript
-    var App = Ember.Application.create(),
+    var Mahjongg = Ember.Application.create(),
         Session = Ember.Object.extend({ isAuthenticated: false });
 
     // A factory must be registered before it can be injected
-    App.register('session:main', Session);
+    Mahjongg.register('session:main', Session);
 
     // Inject 'session:main' onto all factories of the type 'controller'
     // with the name 'session'
-    App.inject('controller', 'session', 'session:main');
+    Mahjongg.inject('controller', 'session', 'session:main');
 
-    App.IndexController = Ember.Controller.extend({
+    Mahjongg.IndexController = Ember.Controller.extend({
       isLoggedIn: Ember.computed.alias('session.isAuthenticated')
     });
     ```
@@ -41044,9 +41044,9 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
     Injections can also be performed on specific factories.
 
     ```javascript
-    App.inject(<full_name or type>, <property name>, <full_name>)
-    App.inject('route', 'source', 'source:main')
-    App.inject('route:application', 'email', 'model:email')
+    Mahjongg.inject(<full_name or type>, <property name>, <full_name>)
+    Mahjongg.inject('route', 'source', 'source:main')
+    Mahjongg.inject('route:application', 'email', 'model:email')
     ```
 
     It is important to note that injections can only be performed on
@@ -41096,7 +41096,7 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
   _initialize: function() {
     if (this.isDestroyed) { return; }
 
-    // At this point, the App.Router must already be assigned
+    // At this point, the Mahjongg.Router must already be assigned
     if (this.Router) {
       var container = this.__container__;
       container.unregister('router:main');
@@ -41127,24 +41127,24 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
 
     ```javascript
 
-    var App;
+    var Mahjongg;
 
     Ember.run(function() {
-      App = Ember.Application.create();
+      Mahjongg = Ember.Application.create();
     });
 
     module("acceptance test", {
       setup: function() {
-        App.reset();
+        Mahjongg.reset();
       }
     });
 
     test("first test", function() {
-      // App is freshly reset
+      // Mahjongg is freshly reset
     });
 
     test("first test", function() {
-      // App is again freshly reset
+      // Mahjongg is again freshly reset
     });
     ```
 
@@ -41156,17 +41156,17 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
 
     ```javascript
 
-    var App;
+    var Mahjongg;
 
     Ember.run(function() {
-      App = Ember.Application.create();
+      Mahjongg = Ember.Application.create();
     });
 
     module("acceptance test", {
       setup: function() {
         Ember.run(function() {
-          App.reset();
-          App.deferReadiness();
+          Mahjongg.reset();
+          Mahjongg.deferReadiness();
         });
       }
     });
@@ -41175,7 +41175,7 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
       ok(true, 'something before app is initialized');
 
       Ember.run(function() {
-        App.advanceReadiness();
+        Mahjongg.advanceReadiness();
       });
       ok(true, 'something after app is initialized');
     });
@@ -41420,7 +41420,7 @@ Ember.Application.reopenClass({
 
   * templates are looked up on `Ember.TEMPLATES`
   * other names are looked up on the application after classifying the name.
-    For example, `controller:post` looks up `App.PostController` by default.
+    For example, `controller:post` looks up `Mahjongg.PostController` by default.
   * if the default lookup fails, look for registered classes on the container
 
   This allows the application to register default injections in the container
@@ -41549,7 +41549,7 @@ Ember.ControllerMixin.reopen({
     For example, when you define a controller:
 
     ```javascript
-    App.CommentsController = Ember.ArrayController.extend({
+    Mahjongg.CommentsController = Ember.ArrayController.extend({
       needs: ['post']
     });
     ```
@@ -41559,20 +41559,20 @@ Ember.ControllerMixin.reopen({
     `controllers` property:
 
     ```javascript
-    this.get('controllers.post'); // instance of App.PostController
+    this.get('controllers.post'); // instance of Mahjongg.PostController
     ```
 
     Given that you have a nested controller (nested resource):
 
     ```javascript
-    App.CommentsNewController = Ember.ObjectController.extend({
+    Mahjongg.CommentsNewController = Ember.ObjectController.extend({
     });
     ```
 
     When you define a controller that requires access to a nested one:
 
     ```javascript
-    App.IndexController = Ember.ObjectController.extend({
+    Mahjongg.IndexController = Ember.ObjectController.extend({
       needs: ['commentsNew']
     });
     ```
@@ -41580,7 +41580,7 @@ Ember.ControllerMixin.reopen({
     You will be able to get access to it:
 
     ```javascript
-    this.get('controllers.commentsNew'); // instance of App.CommentsNewController
+    this.get('controllers.commentsNew'); // instance of Mahjongg.CommentsNewController
     ```
 
     This is only available for singleton controllers.
@@ -41627,10 +41627,10 @@ Ember.ControllerMixin.reopen({
     property will be accessible by name through this property.
 
     ```javascript
-    App.CommentsController = Ember.ArrayController.extend({
+    Mahjongg.CommentsController = Ember.ArrayController.extend({
       needs: ['post'],
       postTitle: function(){
-        var currentPost = this.get('controllers.post'); // instance of App.PostController
+        var currentPost = this.get('controllers.post'); // instance of Mahjongg.PostController
         return currentPost.get('title');
       }.property('controllers.post.title')
     });
@@ -42275,7 +42275,7 @@ Ember.Test = {
 
   /**
     `registerHelper` is used to register a test helper that will be injected
-    when `App.injectTestHelpers` is called.
+    when `Mahjongg.injectTestHelpers` is called.
 
     The helper method will always be called with the current Application as
     the first parameter.
@@ -42292,8 +42292,8 @@ Ember.Test = {
     called with `app` as the first parameter.
 
     ```javascript
-    App = Ember.Application.create();
-    App.injectTestHelpers();
+    Mahjongg = Ember.Application.create();
+    Mahjongg.injectTestHelpers();
     boot();
     ```
 
@@ -42312,7 +42312,7 @@ Ember.Test = {
 
   /**
     `registerAsyncHelper` is used to register an async test helper that will be injected
-    when `App.injectTestHelpers` is called.
+    when `Mahjongg.injectTestHelpers` is called.
 
     The helper method will always be called with the current Application as
     the first parameter.
@@ -42375,7 +42375,7 @@ Ember.Test = {
   },
 
   /**
-    Used to register callbacks to be fired whenever `App.injectTestHelpers`
+    Used to register callbacks to be fired whenever `Mahjongg.injectTestHelpers`
     is called.
 
     The callback will receive the current application as an argument.
@@ -42421,7 +42421,7 @@ Ember.Test = {
    Used to allow ember-testing to communicate with a specific testing
    framework.
 
-   You can manually set it before calling `App.setupForTesting()`.
+   You can manually set it before calling `Mahjongg.setupForTesting()`.
 
    Example:
 
@@ -42603,7 +42603,7 @@ Ember.Application.reopen({
    Example:
 
   ```
-  App.setupForTesting();
+  Mahjongg.setupForTesting();
   ```
 
     @method setupForTesting
@@ -42640,7 +42640,7 @@ Ember.Application.reopen({
 
   Example:
   ```
-  App.injectTestHelpers();
+  Mahjongg.injectTestHelpers();
   ```
 
     @method injectTestHelpers
@@ -42667,7 +42667,7 @@ Ember.Application.reopen({
     Example:
 
     ```javascript
-    App.removeTestHelpers();
+    Mahjongg.removeTestHelpers();
     ```
 
     @public
@@ -42770,7 +42770,7 @@ function decrementAjaxPendingRequests(){
   Sets Ember up for testing. This is useful to perform
   basic setup steps in order to unit test.
 
-  Use `App.setupForTesting` to perform integration tests (full
+  Use `Mahjongg.setupForTesting` to perform integration tests (full
   application testing).
 
   @method setupForTesting

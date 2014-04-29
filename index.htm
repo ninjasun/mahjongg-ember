@@ -28,7 +28,12 @@
 
 <script data-template-name="index" type="text/x-handlebars">
     <section id="board" {{bind-attr class="state"}} >
-        {{#each tile in content.tiles}}
+        {{#each tile in content.tilesArray}}
+            <div
+            {{bind-attr class=":tile-shadow tile.visible tile.selected" style="tile.shadowPosition"}}
+            ></div>
+        {{/each}}
+        {{#each tile in content.tilesArray}}
         <a href="#"
         {{bind-attr class=":tile tile.cssClass tile.visible tile.selected tile.clickable" style="tile.position"}}
         {{action "clickTile" tile}}
