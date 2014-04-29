@@ -58,7 +58,17 @@ a:hover {
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
-  width: 970px;
+  width: 650px;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 940px;
+  }
 }
 header {
   padding: 30px 0 20px;
@@ -70,6 +80,9 @@ footer {
   font-size: 90%;
   line-height: 50px;
   height: 50px;
+}
+footer a {
+  margin-left: 5px;
 }
 i {
   display: inline-block;
@@ -118,7 +131,7 @@ i.ic-linkedin {
   width: 36px;
   height: 48px;
   background: white;
-  box-shadow: 0 0 10px #000, 5px 5px 10px #000;
+  box-shadow: 0 0 5px #000, 5px 5px 10px #000;
 }
 #board .tile {
   display: none;
