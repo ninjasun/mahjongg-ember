@@ -19,21 +19,19 @@
 </script>
 
 <script data-template-name="index" type="text/x-handlebars">
-    <section id="board" {{bind-attr class="state"}} >
-        {{#each tile in content.tilesArray}}
-            <div
-            {{bind-attr class=":tile-shadow tile.visible tile.selected" style="tile.shadowPosition"}}
-            ></div>
-        {{/each}}
-        {{#each tile in content.tilesArray}}
-        <a href="#"
-        {{bind-attr class=":tile tile.cssClass tile.visible tile.selected tile.clickable" style="tile.position"}}
-        {{action "clickTile" tile}}
-        ></a>
-        {{/each}}
-    </section>
+    {{view Mahjongg.BoardView}}
+
+    <div class="statusbar">
+        <button {{action 'newGame'}}>New game</button>
+    </div>
 </script>
 
+<script data-template-name="board" type="text/x-handlebars">
+    {{#each tile in board.tilesArray}}
+    {{view Mahjongg.TileView tile=tile}}
+    {{view Mahjongg.ShadowView tile=tile}}
+    {{/each}}
+</script>
 
 </body>
 </html>

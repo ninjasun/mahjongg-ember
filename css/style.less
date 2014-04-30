@@ -21,7 +21,7 @@ a {
   width: 970px;
 }
 
-#board {
+.board {
   width: 640px;
   height: 480px;
   margin: 0 auto;
@@ -50,7 +50,6 @@ a {
 
   // change background
   &.game-won {
-    background-image: url('../i/win.png');
   }
 
   .tile-shadow {
@@ -71,12 +70,19 @@ a {
 
     &.clickable {
       cursor: pointer;
+      box-shadow: inset 0 0 3px #0000df;
     }
 
     &.selected {
       box-shadow: inset 0 0 10px #df0000;
     }
   }
+}
+
+.statusbar {
+  width: 640px;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 @import "tiles";
