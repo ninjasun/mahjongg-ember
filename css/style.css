@@ -100,7 +100,7 @@ i.ic-linkedin {
   height: 16px;
   background-position: -16px 0px;
 }
-#board {
+.board {
   width: 640px;
   height: 480px;
   margin: 0 auto;
@@ -111,21 +111,21 @@ i.ic-linkedin {
   background-position: 0 0;
   background-image: url('../i/bkg_game.jpg');
 }
-#board.loading {
+.board.loading {
   background-color: #d2c8b5;
   background-image: url('../i/loading.gif');
   background-position: center center;
 }
-#board.game .tile.visible,
-#board.game-over .tile.visible,
-#board.game .tile-shadow.visible,
-#board.game-over .tile-shadow.visible {
+.board.game .tile.visible,
+.board.game-over .tile.visible,
+.board.game .tile-shadow.visible,
+.board.game-over .tile-shadow.visible {
   display: block;
 }
-#board.game-won {
+.board.game-won {
   background-image: url('../i/win.png');
 }
-#board .tile-shadow {
+.board .tile-shadow {
   display: none;
   position: absolute;
   width: 36px;
@@ -135,155 +135,184 @@ i.ic-linkedin {
   border-radius: 3px;
   -moz-border-radius: 3px;
 }
-#board .tile {
+.board .tile {
   display: none;
   position: absolute;
   border-radius: 3px;
   -moz-border-radius: 3px;
 }
-#board .tile.clickable {
+.board .tile.clickable {
   cursor: pointer;
 }
-#board .tile.clickable:hover {
+.board .tile.clickable:hover {
   box-shadow: inset 0 0 3px 3px #ffb800;
 }
-#board .tile.selected {
+.board .tile.selected {
   box-shadow: inset 0 0 3px 3px #df0000;
 }
-#board .tile.selected:hover {
+.board .tile.selected:hover {
   box-shadow: inset 0 0 3px 3px #df0000;
 }
-.tile {
+.board .tile {
   width: 36px;
   height: 48px;
   background-image: url('../i/tiles.png');
   background-repeat: no-repeat;
 }
-.tile.tile-1 {
+.board .tile.tile-1 {
   background-position: 0px 0px;
 }
-.tile.tile-2 {
+.board .tile.tile-2 {
   background-position: -36px 0px;
 }
-.tile.tile-3 {
+.board .tile.tile-3 {
   background-position: -72px 0px;
 }
-.tile.tile-4 {
+.board .tile.tile-4 {
   background-position: 0px -48px;
 }
-.tile.tile-5 {
+.board .tile.tile-5 {
   background-position: -36px -48px;
 }
-.tile.tile-6 {
+.board .tile.tile-6 {
   background-position: -72px -48px;
 }
-.tile.tile-7 {
+.board .tile.tile-7 {
   background-position: -108px 0px;
 }
-.tile.tile-8 {
+.board .tile.tile-8 {
   background-position: -108px -48px;
 }
-.tile.tile-9 {
+.board .tile.tile-9 {
   background-position: 0px -96px;
 }
-.tile.tile-10 {
+.board .tile.tile-10 {
   background-position: -36px -96px;
 }
-.tile.tile-11 {
+.board .tile.tile-11 {
   background-position: -72px -96px;
 }
-.tile.tile-12 {
+.board .tile.tile-12 {
   background-position: -108px -96px;
 }
-.tile.tile-13 {
+.board .tile.tile-13 {
   background-position: -144px 0px;
 }
-.tile.tile-14 {
+.board .tile.tile-14 {
   background-position: -144px -48px;
 }
-.tile.tile-15 {
+.board .tile.tile-15 {
   background-position: -144px -96px;
 }
-.tile.tile-16 {
+.board .tile.tile-16 {
   background-position: -180px 0px;
 }
-.tile.tile-17 {
+.board .tile.tile-17 {
   background-position: -180px -48px;
 }
-.tile.tile-18 {
+.board .tile.tile-18 {
   background-position: -180px -96px;
 }
-.tile.tile-19 {
+.board .tile.tile-19 {
   background-position: 0px -144px;
 }
-.tile.tile-20 {
+.board .tile.tile-20 {
   background-position: -36px -144px;
 }
-.tile.tile-21 {
+.board .tile.tile-21 {
   background-position: -72px -144px;
 }
-.tile.tile-22 {
+.board .tile.tile-22 {
   background-position: -108px -144px;
 }
-.tile.tile-23 {
+.board .tile.tile-23 {
   background-position: -144px -144px;
 }
-.tile.tile-24 {
+.board .tile.tile-24 {
   background-position: -180px -144px;
 }
-.tile.tile-25 {
+.board .tile.tile-25 {
   background-position: -216px 0px;
 }
-.tile.tile-26 {
+.board .tile.tile-26 {
   background-position: -216px -48px;
 }
-.tile.tile-27 {
+.board .tile.tile-27 {
   background-position: -216px -96px;
 }
-.tile.tile-28 {
+.board .tile.tile-28 {
   background-position: -216px -144px;
 }
-.tile.tile-29 {
+.board .tile.tile-29 {
   background-position: 0px -192px;
 }
-.tile.tile-30 {
+.board .tile.tile-30 {
   background-position: -36px -192px;
 }
-.tile.tile-31 {
+.board .tile.tile-31 {
   background-position: -72px -192px;
 }
-.tile.tile-32 {
+.board .tile.tile-32 {
   background-position: -108px -192px;
 }
-.tile.tile-33 {
+.board .tile.tile-33 {
   background-position: -144px -192px;
 }
-.tile.tile-34 {
+.board .tile.tile-34 {
   background-position: -180px -192px;
 }
-.tile.tile-35 {
+.board .tile.tile-35 {
   background-position: -216px -192px;
 }
-.tile.tile-36 {
+.board .tile.tile-36 {
   background-position: -252px 0px;
 }
-.tile.tile-37 {
+.board .tile.tile-37 {
   background-position: -252px -48px;
 }
-.tile.tile-38 {
+.board .tile.tile-38 {
   background-position: -252px -96px;
 }
-.tile.tile-39 {
+.board .tile.tile-39 {
   background-position: -252px -144px;
 }
-.tile.tile-40 {
+.board .tile.tile-40 {
   background-position: -252px -192px;
 }
-.tile.tile-41 {
+.board .tile.tile-41 {
   background-position: 0px -240px;
 }
-.tile.tile-42 {
+.board .tile.tile-42 {
   background-position: -36px -240px;
+}
+hr {
+  margin: 20px auto;
+  height: 1px;
+  border: none;
+  outline: none;
+  width: 640px;
+  background: #888;
+}
+.statusbar {
+  width: 640px;
+  margin: 0 auto;
+  background: #dbcebb;
+}
+.statusbar button {
+  outline: none;
+  display: inline-block;
+  padding: 3px 15px;
+  border: 1px solid #888;
+  text-decoration: none;
+  background: #fbefd7;
+}
+.statusbar button:hover {
+  background: #ebdfc9;
+  background: -webkit-gradient(linear, left top, right top, from(#fbefd7), to(#dbcebb));
+  background: -moz-linear-gradient(left, #fbefd7, #dbcebb);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#fbefd7,endColorstr=#dbcebb);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#fbefd7,endColorstr=#dbcebb)";
+  background: linear-gradient(#fbefd7, #dbcebb);
 }
 #downloads {
   text-align: center;

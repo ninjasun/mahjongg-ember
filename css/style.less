@@ -115,7 +115,7 @@ i {
   }
 }
 
-#board {
+.board {
   width: 640px;
   height: 480px;
   margin: 0 auto;
@@ -154,9 +154,9 @@ i {
     height: 48px;
     background: white;
     box-shadow: 0 0 10px #000, 5px 5px 10px #000;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+
     &.selected {
       //box-shadow: 0 0 10px #df0000;
     }
@@ -165,8 +165,8 @@ i {
   .tile {
     display: none;
     position: absolute;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
 
     &.clickable {
       cursor: pointer;
@@ -180,13 +180,41 @@ i {
       box-shadow: inset 0 0 3px 3px #df0000;
 
       &:hover {
-	      box-shadow: inset 0 0 3px 3px #df0000;
+        box-shadow: inset 0 0 3px 3px #df0000;
       }
     }
   }
+
+  @import "tiles";
 }
 
-@import "tiles";
+hr {
+  margin: 20px auto;
+  height: 1px;
+  border: none;
+  outline: none;
+  width: 640px;
+  background: #888;
+}
+
+.statusbar {
+  width: 640px;
+  margin: 0 auto;
+  background: #dbcebb;
+
+  button {
+    outline: none;
+    display: inline-block;
+    padding: 3px 15px;
+    border: 1px solid #888;
+    text-decoration: none;
+    background: #fbefd7;
+
+    &:hover {
+      .vgradient(#fbefd7, #dbcebb);
+    }
+  }
+}
 
 #downloads {
   text-align: center;

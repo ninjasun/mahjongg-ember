@@ -6,11 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="css/style.css" media="screen" rel="stylesheet" type="text/css">
-
-    <script type='text/javascript' src='js/jquery.js'></script>
-    <script type='text/javascript' src='js/handlebars.js'></script>
-    <script type='text/javascript' src='js/ember.js'></script>
-    <script type='text/javascript' src='js/mahjongg.js'></script>
 </head>
 <body>
 <div class="wrapper">
@@ -29,6 +24,8 @@
         </p>
 
         <div id="mahjongg"></div>
+
+        <hr/>
 
         <section id="downloads" class="clearfix">
             <a href="https://github.com/snakeye/mahjongg-ember/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
@@ -58,37 +55,26 @@
 </script>
 
 <script data-template-name="index" type="text/x-handlebars">
-    <section id="board"
-    {{bind-attr class="state"}} >
-    {{#each tile in content.tilesArray}}
-    <div
-    {{bind-attr class=":tile-shadow tile.visible tile.selected" style="tile.shadowPosition"}}
-    ></div>
-    {{/each}}
-    {{#each tile in content.tilesArray}}
-    <a href="#"
-    {{bind-attr class=":tile tile.cssClass tile.visible tile.selected tile.clickable" style="tile.position"}}
-    {{action "clickTile" tile}}
-    ></a>
-    {{/each}}
-    </section>
+    {{view Mahjongg.BoardView}}
+
+    <div class="statusbar">
+        <button
+        {{action 'newGame'}}>New game</button>
+    </div>
 </script>
 
-
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-49029774-2', 'snakeye.github.io');
-    ga('send', 'pageview');
+<script data-template-name="board" type="text/x-handlebars">
+    {{#each tile in board.tilesArray}}
+    {{view Mahjongg.TileView tile=tile}}
+    {{view Mahjongg.ShadowView tile=tile}}
+    {{/each}}
 </script>
+
+<script type='text/javascript' src='js/jquery.js'></script>
+<script type='text/javascript' src='js/handlebars.js'></script>
+<script type='text/javascript' src='js/ember.js'></script>
+<script type='text/javascript' src='js/mahjongg.js'></script>
+<script type='text/javascript' src='js/ga.js'></script>
+
 </body>
 </html>
